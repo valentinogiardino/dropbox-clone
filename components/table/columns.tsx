@@ -37,6 +37,18 @@ export const columns: ColumnDef<FileType>[] = [
   {
     accessorKey: "timestamp",
     header: "Date Added",
+    // cell: ({ renderValue, ...props }) => {
+    //     return (
+    //         <div className="flex flex-col">
+    //             <div className="text-sm">
+    //                 {(renderValue() as Date).toLocaleDateString()}
+    //             </div>
+    //             <div className="text-xs text-gray-500">
+    //                 {(renderValue() as Date).toLocaleTimeString()}
+    //             </div>
+    //         </div>
+    //     )
+    // }
   },
 
   {
