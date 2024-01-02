@@ -13,7 +13,7 @@ import { useUser } from "@clerk/nextjs"
 import { doc, updateDoc } from "firebase/firestore"
 import { useState } from "react"
 import { Input } from "./ui/input"
-
+import toast from "react-hot-toast"
 
 export function RenameModal() {
 
@@ -32,9 +32,23 @@ export function RenameModal() {
     async function renameFile() {
         if(!user || !fileId) return;
 
-        await updateDoc(doc(db, "users", user.id, "files", fileId), {
-            filename: input,
-        })
+        const toastId = toast.loading("Renaming...");
+
+        try {
+            await updateDoc(doc(db, "users", user.id, "files", fileId), {
+                filename: input,
+            })
+    
+            toast.success("Renamed Succesfully", {
+                id: toastId,
+            })
+        } catch (error) {
+            toast.error("Renamed Failed", {
+                id: toastId,
+            })
+        }
+
+        
 
         setInput("");
         setIsRenameModalOpen(false);
