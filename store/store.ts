@@ -10,7 +10,7 @@ interface AppState {
     fileId: string | null;
     setFileId: (fileId: string) => void;
 
-    filename: string | null;
+    filename: string;
     setFilename: (filename: string) => void;
 }
 
